@@ -25,12 +25,22 @@ const config = {
                 use: [
                     'style-loader',
                     'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
                     'stylus-loader'
                 ]
             },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
+            },
+            {
+                test: /\.jsx$/,
+                loader: 'babel-loader'
             },
             {
                 test: /\.(svg|png|jpg|gif)$/,
@@ -54,7 +64,8 @@ const config = {
             }
         }),
         new HtmlWebpackPlugin(),
-    ]
+    ],
+    devtool: 'inline-source-map'
 }
 
 if(isDev){
